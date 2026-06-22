@@ -1,4 +1,3 @@
-
 #!/bin/bash
 # ============================================================================
 # MEMORY FORENSICS ANALYSIS - RAM Dump Analysis

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================================================
-# PILGRIMS v14.0 - AUTOMATED SETUP SCRIPT
+# PILGRIMS v17.0 - AUTOMATED SETUP SCRIPT
 # ============================================================================
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -20,7 +20,7 @@ echo -e "${CYAN}${BOLD}"
 cat << "EOF"
 ╔═══════════════════════════════════════════════════════════════════════════╗
 ║                                                                           ║
-║           🏴‍☠️  PILGRIMS v14.0 - HYBRID EDITION SETUP  🏴‍☠️                     ║
+║           🏴‍☠️  PILGRIMS v17.0 - ULTIMATE SECURITY FRAMEWORK SETUP  🏴‍☠️                     ║
 ║                                                                           ║
 ║           "Navigating the Digital Seas of Cybersecurity"                  ║
 ║                                                                           ║
@@ -216,7 +216,7 @@ if [ $ERRORS -eq 0 ]; then
     cat << "EOF"
 ╔═══════════════════════════════════════════════════════════════════════════╗
 ║                                                                           ║
-║                    ✓ PILGRIMS v14.0 SETUP SUCCESSFUL!                     ║
+║                    ✓ PILGRIMS v17.0 SETUP SUCCESSFUL!                     ║
 ║                                                                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 EOF

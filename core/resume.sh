@@ -51,7 +51,8 @@ list_resumable_scans() {
     echo ""
     
     local count=0
-    for state_file in $(find modules/*/reports -name ".state.json" 2>/dev/null); do
+    while IFS= read -r -d "" state_file; do
+
         local module=$(jq -r '.module' "$state_file")
         local target=$(jq -r '.target' "$state_file")
         local phase=$(jq -r '.phase' "$state_file")
@@ -66,7 +67,8 @@ list_resumable_scans() {
         echo -e "        Dir: $dir"
         echo ""
         ((count++))
-    done
+    done < <(find modules/*/reports -name ".state.json" -print0 2>/dev/null)
+
     
     if [ $count -eq 0 ]; then
         echo -e "    ${YELLOW}⚠ No resumable scans found${NC}"

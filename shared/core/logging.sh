@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================================================
-# CENTRALIZED LOGGING - PILGRIMS v14.0
+# CENTRALIZED LOGGING - PILGRIMS v17.0
 # ============================================================================
 
 LOG_DIR="$SCRIPT_DIR/shared/logs"

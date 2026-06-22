@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================================================
-# PILGRIMS v14.0 - COMPREHENSIVE TEST SUITE
+# PILGRIMS v17.0 - COMPREHENSIVE TEST SUITE
 # ============================================================================
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -20,7 +20,7 @@ echo -e "${CYAN}${BOLD}"
 cat << "EOF"
 ╔═══════════════════════════════════════════════════════════════════════════╗
 ║                                                                           ║
-║              🏴‍☠️  PILGRIMS v14.0 - TEST SUITE  🏴‍☠️                            ║
+║              🏴‍☠️  PILGRIMS v17.0 - TEST SUITE  🏴‍☠️                            ║
 ║                                                                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 EOF
@@ -194,7 +194,7 @@ echo ""
 
 if [ $FAIL -eq 0 ]; then
     echo -e "  ${GREEN}${BOLD}✓ ALL TESTS PASSED!${NC}"
-    echo -e "  ${CYAN}PILGRIMS v14.0 is ready for deployment!${NC}"
+    echo -e "  ${CYAN}PILGRIMS v17.0 is ready for deployment!${NC}"
 else
     echo -e "  ${RED}${BOLD}✗ SOME TESTS FAILED${NC}"
     echo -e "  ${YELLOW}Please review and fix the issues above.${NC}"

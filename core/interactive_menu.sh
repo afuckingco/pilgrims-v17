@@ -71,25 +71,20 @@ show_main_menu() {
     echo -e "    ${GREEN}[ I]${NC} 📜 Scan History"
     echo -e "    ${GREEN}[ S]${NC} 📊 System Status"
     echo -e "    ${GREEN}[ T]${NC} 🎨 Change Theme"
-    ━━━ ⚡ ADVANCED FEATURES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    [28] 🔄 Resume Previous Scan
-    [29] 📊 Compare Scans
-    [30] 🗺️  Attack Path Mapper
-    [31] 🎯 MITRE ATT&CK Mapping
-    [32] ⚡ Parallel Scanning
-
-    ━━━ ⚡ ADVANCED FEATURES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    [28] 🔄 Resume Previous Scan
-    [29] 📊 Compare Scans
-    [30] 🗺️  Attack Path Mapper
-    [31] 🎯 MITRE ATT&CK Mapping
-    [32] ⚡ Parallel Scanning
-
+    echo -e "    ${YELLOW}━━━ ⚡ ADVANCED FEATURES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "    ${GREEN}[28]${NC} 🔄 Resume Previous Scan"
+    echo -e "    ${GREEN}[29]${NC} 📊 Compare Scans"
+    echo -e "    ${GREEN}[30]${NC} 🗺️  Attack Path Mapper"
+    echo -e "    ${GREEN}[31]${NC} 🎯 MITRE ATT&CK Mapping"
+    echo -e "    ${GREEN}[32]${NC} ⚡ Parallel Scanning"
+    echo -e "    ${GREEN}[33]${NC} 🧬 Coverage-Guided Fuzzing"
+    echo -e "    ${GREEN}[34]${NC} 🧪 Symbolic Execution"
+    echo -e "    ${GREEN}[35]${NC} 🔬 Formal Verification"
     echo -e "    ${GREEN}[ Q]${NC} 🚪 Quit"
     echo ""
     
     echo -e "    ${CYAN}───────────────────────────────────────────────────────────────────────────────${NC}"
-    echo -ne "    ${BOLD}Pilihan Anda [1-27/H/I/S/T/Q]:${NC} "
+    echo -ne "    ${BOLD}Pilihan Anda [1-35/H/I/S/T/Q]:${NC} "
 }
 
 show_web_submenu() {
@@ -152,6 +147,43 @@ handle_menu_choice() {
         S|s) show_system_status ;;
         T|t) change_theme ;;
         Q|q) exit 0 ;;
+
+        28) list_resumable_scans ;;
+        29)
+            echo -ne "    Module: "; read -r m
+            echo -ne "    Target: "; read -r t
+            compare_scans "$m" "$t"
+            ;;
+        30)
+            echo -ne "    Scan directory: "; read -r d
+            map_attack_paths "$d"
+            ;;
+        31)
+            echo -ne "    Scan directory: "; read -r d
+            map_to_mitre "$d"
+            ;;
+        32)
+            echo -ne "    Targets file: "; read -r fa
+            echo -ne "    Module: "; read -r ma
+            parallel_scan "$fa" "$ma" 4
+            ;;
+        33)
+            echo -ne "    Target URL/file: "; read -r target
+            echo -ne "    Input directory: "; read -r input_dir
+            echo -ne "    Duration (seconds): "; read -r duration
+            output_dir="reports/fuzzing_$(date +%Y%m%d_%H%M%S)"
+            coverage_fuzzing "$target" "$input_dir" "$output_dir" "$duration"
+            ;;
+        34)
+            echo -ne "    Target: "; read -r target
+            output_dir="reports/symbolic_$(date +%Y%m%d_%H%M%S)"
+            symbolic_execution "$target" "$output_dir"
+            ;;
+        35)
+            echo -ne "    Target: "; read -r target
+            output_dir="reports/formal_$(date +%Y%m%d_%H%M%S)"
+            formal_verification "$target" "$output_dir"
+            ;;
         *) echo -e "    ${RED}❌ Pilihan tidak valid${NC}"; sleep 2 ;;
     esac
 }
@@ -649,396 +681,3 @@ interactive_mode() {
 }
 
 # Add handlers in handle_menu_choice
-handle_menu_choice() {
-    local choice=$1
-    case $choice in
-        28) list_resumable_scans ;;
-        29) 
-            echo -ne "    Module: "; read -r m
-            echo -ne "    Target: "; read -r t
-            compare_scans "$m" "$t"
-            ;;
-        30)
-            echo -ne "    Scan directory: "; read -r d
-            map_attack_paths "$d"
-            ;;
-        31)
-            echo -ne "    Scan directory: "; read -r d
-            map_to_mitre "$d"
-            ;;
-        32)
-            echo -ne "    Targets file: "; read -r f
-            echo -ne "    Module: "; read -r m
-            parallel_scan "$f" "$m" 4
-            ;;
-    esac
-}
-
-# Add handlers in handle_menu_choice
-handle_menu_choice() {
-    local choice=$1
-    case $choice in
-        28) list_resumable_scans ;;
-        29) 
-            echo -ne "    Module: "; read -r m
-            echo -ne "    Target: "; read -r t
-            compare_scans "$m" "$t"
-            ;;
-        30)
-            echo -ne "    Scan directory: "; read -r d
-            map_attack_paths "$d"
-            ;;
-        31)
-            echo -ne "    Scan directory: "; read -r d
-            map_to_mitre "$d"
-            ;;
-        32)
-            echo -ne "    Targets file: "; read -r f
-            echo -ne "    Module: "; read -r m
-            parallel_scan "$f" "$m" 4
-            ;;
-    esac
-}
-
-# Add to handle_menu_choice function
-        33)
-            echo -ne "    Target URL/file: "; read -r target
-            echo -ne "    Input directory: "; read -r input_dir
-            echo -ne "    Duration (seconds): "; read -r duration
-            output_dir="reports/fuzzing_$(date +%Y%m%d_%H%M%S)"
-            coverage_fuzzing "$target" "$input_dir" "$output_dir" "$duration"
-            ;;
-        34)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/symbolic_$(date +%Y%m%d_%H%M%S)"
-            symbolic_execution "$target" "$output_dir"
-            ;;
-        35)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/formal_$(date +%Y%m%d_%H%M%S)"
-            formal_verification "$target" "$output_dir"
-            ;;
-        36)
-            echo -ne "    Target: "; read -r target
-            echo -ne "    Test suite file: "; read -r test_suite
-            output_dir="reports/mutation_$(date +%Y%m%d_%H%M%S)"
-            mutation_testing "$target" "$test_suite" "$output_dir"
-            ;;
-
-# Hardware Security handlers
-        37)
-            echo -ne "    Target: "; read -r target
-            echo -ne "    Attack type (timing/cache/power): "; read -r attack_type
-            output_dir="reports/side_channel_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/hardware/side_channel.sh"
-            side_channel_test "$target" "$output_dir" "$attack_type"
-            ;;
-        38)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/fault_injection_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/hardware/fault_injection.sh"
-            fault_injection_test "$target" "$output_dir"
-            ;;
-        39)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/hsm_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/hardware/hsm_test.sh"
-            hsm_security_test "$target" "$output_dir"
-            ;;
-        40)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/tpm_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/hardware/tpm_test.sh"
-            tpm_security_test "$target" "$output_dir"
-            ;;
-
-# AI/ML Security handlers
-        41)
-            echo -ne "    Target LLM API: "; read -r target
-            output_dir="reports/llm_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/aiml/llm_security.sh"
-            llm_security_test "$target" "$output_dir"
-            ;;
-        42)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/federated_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/aiml/federated_security.sh"
-            federated_learning_test "$target" "$output_dir"
-            ;;
-        43)
-            echo -ne "    Model file/path: "; read -r target
-            output_dir="reports/backdoor_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/aiml/backdoor_detection.sh"
-            backdoor_detection "$target" "$output_dir"
-            ;;
-        44)
-            echo -ne "    Target API: "; read -r target
-            output_dir="reports/model_stealing_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/aiml/model_stealing.sh"
-            model_stealing_test "$target" "$output_dir"
-            ;;
-
-# Supply Chain Security handlers
-        45)
-            echo -ne "    Target project: "; read -r target
-            output_dir="reports/sbom_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/supplychain/sbom.sh"
-            sbom_analysis "$target" "$output_dir"
-            ;;
-        46)
-            echo -ne "    Target project: "; read -r target
-            output_dir="reports/dep_confusion_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/supplychain/dependency_confusion.sh"
-            dependency_confusion_test "$target" "$output_dir"
-            ;;
-        47)
-            echo -ne "    Target directory: "; read -r target
-            output_dir="reports/code_signing_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/supplychain/code_signing.sh"
-            code_signing_verification "$target" "$output_dir"
-            ;;
-        48)
-            echo -ne "    Target registry/image: "; read -r target
-            output_dir="reports/container_prov_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/supplychain/container_provenance.sh"
-            container_provenance_test "$target" "$output_dir"
-            ;;
-
-# Cloud-Native handlers
-        49)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/ebpf_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/cloudnative/ebpf_security.sh"
-            ebpf_security_analysis "$target" "$output_dir"
-            ;;
-        50)
-            echo -ne "    Target WASM file: "; read -r target
-            output_dir="reports/wasm_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/cloudnative/wasm_security.sh"
-            wasm_security_test "$target" "$output_dir"
-            ;;
-        51)
-            echo -ne "    Target: "; read -r target
-            echo -ne "    Mesh type (istio/linkerd/consul): "; read -r mesh
-            output_dir="reports/service_mesh_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/cloudnative/service_mesh.sh"
-            service_mesh_test "$target" "$output_dir" "$mesh"
-            ;;
-        52)
-            echo -ne "    Target cluster: "; read -r target
-            output_dir="reports/k8s_admission_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/cloudnative/k8s_admission.sh"
-            k8s_admission_test "$target" "$output_dir"
-            ;;
-
-# Protocol handlers
-        53)
-            echo -ne "    Target gRPC server: "; read -r target
-            output_dir="reports/grpc_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/protocol/grpc_security.sh"
-            grpc_security_test "$target" "$output_dir"
-            ;;
-        54)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/quic_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/protocol/quic_security.sh"
-            quic_security_test "$target" "$output_dir"
-            ;;
-        55)
-            echo -ne "    Target WebSocket: "; read -r target
-            output_dir="reports/websocket_adv_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/protocol/websocket_advanced.sh"
-            websocket_advanced_test "$target" "$output_dir"
-            ;;
-        56)
-            echo -ne "    Target API Gateway: "; read -r target
-            echo -ne "    Gateway type (kong/apigee/envoy): "; read -r gw
-            output_dir="reports/api_gateway_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/protocol/api_gateway.sh"
-            api_gateway_test "$target" "$output_dir" "$gw"
-            ;;
-
-# DevSecOps handlers
-        57)
-            echo -ne "    Target git repo: "; read -r target
-            output_dir="reports/git_hooks_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/devsecops/git_hooks.sh"
-            git_hooks_security "$target" "$output_dir"
-            ;;
-        58)
-            echo -ne "    Target IaC directory: "; read -r target
-            echo -ne "    IaC type (terraform/cloudformation): "; read -r iac
-            output_dir="reports/iac_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/devsecops/iac_security.sh"
-            iac_security_test "$target" "$output_dir" "$iac"
-            ;;
-        59)
-            echo -ne "    Target serverless: "; read -r target
-            echo -ne "    Provider (aws/gcp/azure): "; read -r provider
-            output_dir="reports/serverless_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/devsecops/serverless_security.sh"
-            serverless_security_test "$target" "$output_dir" "$provider"
-            ;;
-        60)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/chaos_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/devsecops/chaos_security.sh"
-            chaos_security_test "$target" "$output_dir"
-            ;;
-
-# Hardware Security handlers
-        37)
-            echo -ne "    Target: "; read -r target
-            echo -ne "    Attack type (timing/cache/power): "; read -r attack_type
-            output_dir="reports/side_channel_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/hardware/side_channel.sh"
-            side_channel_test "$target" "$output_dir" "$attack_type"
-            ;;
-        38)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/fault_injection_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/hardware/fault_injection.sh"
-            fault_injection_test "$target" "$output_dir"
-            ;;
-        39)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/hsm_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/hardware/hsm_test.sh"
-            hsm_security_test "$target" "$output_dir"
-            ;;
-        40)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/tpm_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/hardware/tpm_test.sh"
-            tpm_security_test "$target" "$output_dir"
-            ;;
-
-# AI/ML Security handlers
-        41)
-            echo -ne "    Target LLM API: "; read -r target
-            output_dir="reports/llm_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/aiml/llm_security.sh"
-            llm_security_test "$target" "$output_dir"
-            ;;
-        42)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/federated_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/aiml/federated_security.sh"
-            federated_learning_test "$target" "$output_dir"
-            ;;
-        43)
-            echo -ne "    Model file/path: "; read -r target
-            output_dir="reports/backdoor_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/aiml/backdoor_detection.sh"
-            backdoor_detection "$target" "$output_dir"
-            ;;
-        44)
-            echo -ne "    Target API: "; read -r target
-            output_dir="reports/model_stealing_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/aiml/model_stealing.sh"
-            model_stealing_test "$target" "$output_dir"
-            ;;
-
-# Supply Chain Security handlers
-        45)
-            echo -ne "    Target project: "; read -r target
-            output_dir="reports/sbom_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/supplychain/sbom.sh"
-            sbom_analysis "$target" "$output_dir"
-            ;;
-        46)
-            echo -ne "    Target project: "; read -r target
-            output_dir="reports/dep_confusion_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/supplychain/dependency_confusion.sh"
-            dependency_confusion_test "$target" "$output_dir"
-            ;;
-        47)
-            echo -ne "    Target directory: "; read -r target
-            output_dir="reports/code_signing_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/supplychain/code_signing.sh"
-            code_signing_verification "$target" "$output_dir"
-            ;;
-        48)
-            echo -ne "    Target registry/image: "; read -r target
-            output_dir="reports/container_prov_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/supplychain/container_provenance.sh"
-            container_provenance_test "$target" "$output_dir"
-            ;;
-
-# Compliance handlers
-        61)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/soc2_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/compliance/soc2.sh"
-            soc2_compliance_check "$target" "$output_dir"
-            ;;
-        62)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/iso27001_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/compliance/iso27001.sh"
-            iso27001_assessment "$target" "$output_dir"
-            ;;
-        63)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/hipaa_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/compliance/hipaa.sh"
-            hipaa_audit "$target" "$output_dir"
-            ;;
-        64)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/pcidss_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/compliance/pcidss.sh"
-            pcidss_scan "$target" "$output_dir"
-            ;;
-
-# Cryptography handlers
-        65)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/zkp_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/crypto/zkp_audit.sh"
-            zkp_audit "$target" "$output_dir"
-            ;;
-        66)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/pqc_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/crypto/pqc_test.sh"
-            pqc_testing "$target" "$output_dir"
-            ;;
-        67)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/mpc_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/crypto/mpc_security.sh"
-            mpc_security "$target" "$output_dir"
-            ;;
-        68)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/fhe_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/crypto/fhe_audit.sh"
-            fhe_audit "$target" "$output_dir"
-            ;;
-
-# Threat Intel handlers
-        69)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/mitre_nav_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/threatintel/mitre_navigator.sh"
-            mitre_navigator "$target" "$output_dir"
-            ;;
-        70)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/stix_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/threatintel/stix_taxii.sh"
-            stix_taxii_integration "$target" "$output_dir"
-            ;;
-        71)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/soar_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/threatintel/soar_integration.sh"
-            soar_integration "$target" "$output_dir"
-            ;;
-        72)
-            echo -ne "    Target: "; read -r target
-            output_dir="reports/ir_$(date +%Y%m%d_%H%M%S)"
-            source "$SCRIPT_DIR/core/threatintel/ir_automation.sh"
-            ir_automation "$target" "$output_dir"
-            ;;

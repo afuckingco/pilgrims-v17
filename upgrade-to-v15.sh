@@ -1,5 +1,5 @@
 #!/bin/bash
-# PILGRIMS v14.0 → v15.0 ULTIMATE HYBRID UPGRADE
+# PILGRIMS v17.0 → v15.0 ULTIMATE HYBRID UPGRADE
 # Restores ALL v13.0 advanced features + keeps v14.0 modular architecture
 
 echo "🔧 PILGRIMS v15.0 UPGRADE STARTED"

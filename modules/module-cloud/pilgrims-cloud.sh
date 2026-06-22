@@ -79,7 +79,7 @@ if [ "$PROVIDER" = "aws" ]; then
         
         while read -r bucket; do
             # Check public access
-            local public=$(aws s3api get-public-access-block --bucket "$bucket" 2>&1)
+            public=$(aws s3api get-public-access-block --bucket "$bucket" 2>&1)
             if echo "$public" | grep -q "false"; then
                 echo "[HIGH] Public bucket: $bucket" >> "$OUTPUT_DIR/public_buckets.txt"
                 print_vuln "HIGH" "Public bucket: $bucket"
@@ -158,7 +158,7 @@ if [ "$PROVIDER" = "gcp" ]; then
         # Check for public access
         > "$OUTPUT_DIR/public_buckets.txt"
         while read -r bucket; do
-            local acl=$(gsutil iam get "$bucket" 2>&1)
+            acl=$(gsutil iam get "$bucket" 2>&1)
             if echo "$acl" | grep -q "allUsers"; then
                 echo "[HIGH] Public bucket: $bucket" >> "$OUTPUT_DIR/public_buckets.txt"
                 print_vuln "HIGH" "Public bucket: $bucket"
@@ -187,7 +187,8 @@ $(cat "$OUTPUT_DIR"/*.txt 2>/dev/null | grep -E "\[CRITICAL\]|\[HIGH\]" | head -
 
 ## 📁 Files Generated
 
-$(ls -1 "$OUTPUT_DIR" | grep -v "REPORT.md")
+$(find "$OUTPUT_DIR" -maxdepth 1 -type f -printf "%f
+" 2>/dev/null | grep -v "^REPORT\.md$")
 
 ## 🛡️ Recommendations
 

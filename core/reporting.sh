@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================================================
-# UNIFIED REPORTING ENGINE - PILGRIMS v14.0
+# UNIFIED REPORTING ENGINE - PILGRIMS v17.0
 # ============================================================================
 
 # Generate unified report across multiple modules
@@ -18,7 +18,7 @@ generate_unified_report() {
 
 **Generated:** $(date)  
 **Modules Scanned:** ${modules[*]}  
-**Scanner Version:** v14.0 - Hybrid Edition
+**Scanner Version:** v17.0 - Ultimate Edition
 
 ---
 
@@ -136,7 +136,7 @@ fi)
 ## 📎 Appendix
 
 ### Scan Details
-- **Scanner:** PILGRIMS v14.0 - Hybrid Edition
+- **Scanner:** PILGRIMS v17.0 - Hybrid Edition
 - **Architecture:** Modular with unified reporting
 - **Modules Used:** ${modules[*]}
 - **Generated:** $(date)
@@ -267,7 +267,7 @@ EOF
         </div>
         
         <div style="text-align: center; padding: 30px; color: white;">
-            <p>🏴‍☠️ PILGRIMS v14.0 - Hybrid Edition</p>
+            <p>🏴‍☠️ PILGRIMS v17.0 - Hybrid Edition</p>
         </div>
     </div>
 </body>

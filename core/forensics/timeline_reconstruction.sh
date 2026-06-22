@@ -1,4 +1,3 @@
-
 #!/bin/bash
 # ============================================================================
 # TIMELINE RECONSTRUCTION - Event Correlation & Visualization

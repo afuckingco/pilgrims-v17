@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================================================
-# SHARED UI COMPONENTS - PILGRIMS v14.0
+# SHARED UI COMPONENTS - PILGRIMS v17.0
 # ============================================================================
 
 # Colors
@@ -96,7 +96,7 @@ print_epic_banner() {
 EOF
     echo -e "${CYAN}    ╔═══════════════════════════════════════════════════════════════════════════╗${NC}"
     echo -e "${CYAN}    ║${NC}                                                                       ${CYAN}║${NC}"
-    echo -e "${CYAN}    ║${NC}        ${BOLD}${RED}🏴‍☠️  PILGRIMS v14.0 - HYBRID EDITION${NC}                          ${CYAN}║${NC}"
+    echo -e "${CYAN}    ║${NC}        ${BOLD}${RED}🏴‍☠️  PILGRIMS v17.0 - ULTIMATE SECURITY FRAMEWORK${NC}                          ${CYAN}║${NC}"
     echo -e "${CYAN}    ║${NC}                                                                       ${CYAN}║${NC}"
     echo -e "${CYAN}    ║${NC}        ${WHITE}\"Navigating the Digital Seas of Cybersecurity\"${NC}                  ${CYAN}║${NC}"
     echo -e "${CYAN}    ║${NC}                                                                       ${CYAN}║${NC}"
