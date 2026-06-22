@@ -44,6 +44,26 @@ else
     FAIL=$((FAIL+1))
 fi
 
+# Test --version flag
+output=$(./pilgrims.sh --version 2>&1)
+if echo "$output" | grep -q "PILGRIMS v17"; then
+    echo -e "  PASS: --version shows PILGRIMS v17 banner"
+    PASS=$((PASS+1))
+else
+    echo -e "  FAIL: --version missing v17 banner"
+    FAIL=$((FAIL+1))
+fi
+
+# Test -V short flag
+output=$(./pilgrims.sh -V 2>&1)
+if echo "$output" | grep -q "License: MIT"; then
+    echo -e "  PASS: -V shows license info"
+    PASS=$((PASS+1))
+else
+    echo -e "  FAIL: -V missing license info"
+    FAIL=$((FAIL+1))
+fi
+
 echo ""
 echo "pilgrims.sh: PASS=$PASS FAIL=$FAIL"
 if [ $FAIL -gt 0 ]; then exit 1; fi

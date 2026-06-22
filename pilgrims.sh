@@ -50,6 +50,7 @@ THEME="default"
 SHOW_HISTORY=0
 LIST_MODULES=0
 SHOW_HELP=0
+SHOW_VERSION=0
 MODULE_ARGS=""
 
 for arg in "$@"; do
@@ -94,6 +95,7 @@ for arg in "$@"; do
         # Utilities
         --history) SHOW_HISTORY=1 ;;
         --modules) LIST_MODULES=1 ;;
+        --version|-V) SHOW_VERSION=1 ;;
         -h|--help) SHOW_HELP=1 ;;
         
         # Target & other args
@@ -106,6 +108,13 @@ apply_theme "$THEME"
 
 # ============================================================================
 # HANDLE UTILITIES
+if [ "$SHOW_VERSION" -eq 1 ]; then
+    echo "PILGRIMS v$VERSION - Ultimate Security Framework"
+    echo "License: MIT"
+    echo "Repo: https://github.com/afiqandico13/pilgrims-v17"
+    exit 0
+fi
+
 # ============================================================================
 if [ "$SHOW_HELP" -eq 1 ]; then
     print_epic_banner
