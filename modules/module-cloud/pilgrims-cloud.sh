@@ -124,6 +124,7 @@ if [ "$PROVIDER" = "azure" ]; then
         az storage account list --query '[].[name,primaryEndpoints]' --output table > "$OUTPUT_DIR/storage_accounts.txt" 2>&1
         
         # Check for public access
+        # shellcheck disable=SC2016  # Azure --query syntax literal
         az storage account list --query '[?allowBlobPublicAccess==`true`].[name]' --output tsv > "$OUTPUT_DIR/public_storage.txt" 2>&1
         
         PUBLIC_STORAGE=$(wc -l < "$OUTPUT_DIR/public_storage.txt")

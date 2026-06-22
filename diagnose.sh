@@ -1,4 +1,5 @@
 #!/bin/bash
+# Strict mode: catch undefined variables (added 2026-06-23)set -u
 echo "🔍 PILGRIMS DIAGNOSTIC TOOL"
 echo "═══════════════════════════════════════════════════"
 echo ""

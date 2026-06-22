@@ -5,6 +5,13 @@
 ![Version](https://img.shields.io/badge/version-17.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20WSL-lightgrey)
+[![CI Tests](https://github.com/afiqandico13/pilgrims-v17/actions/workflows/test.yml/badge.svg)](https://github.com/afiqandico13/pilgrims-v17/actions/workflows/test.yml)
+[![ShellCheck](https://img.shields.io/badge/shellcheck-clean-brightgreen)](https://github.com/afiqandico13/pilgrims-v17/actions/workflows/shellcheck.yml)
+[![Tests](https://img.shields.io/badge/tests-147%2F147%20pass-brightgreen)](https://github.com/afiqandico13/pilgrims-v17/actions)
+[![Modules](https://img.shields.io/badge/modules-20-blueviolet)](https://github.com/afiqandico13/pilgrims-v17#-capabilities-overview)
+[![Docker](https://img.shields.io/badge/docker-ready-blue)](https://github.com/afiqandico13/pilgrims-v17/blob/main/Dockerfile)
+[![Security](https://img.shields.io/badge/security-policy-yellow)](https://github.com/afiqandico13/pilgrims-v17/blob/main/SECURITY.md)
+[![Discussions](https://img.shields.io/badge/discussions-welcome-orange)](https://github.com/afiqandico13/pilgrims-v17/discussions)
 
 ---
 

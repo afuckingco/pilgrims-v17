@@ -1,9 +1,10 @@
 #!/bin/bash
+# Strict mode: catch undefined variables (added 2026-06-23)set -u
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/core/ui.sh"
 
-ACTION="$1"
-MODULE="$2"
+ACTION="${1:-}"
+MODULE="${2:-}"
 
 case "$ACTION" in
     list)

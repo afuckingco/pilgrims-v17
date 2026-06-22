@@ -183,6 +183,7 @@ mutate_input() {
             cat "$input" | cut -c2- > "$output"
             ;;
         3) # Arithmetic
+            # shellcheck disable=SC2016  # fuzzing: literal $ in sed pattern
             cat "$input" | sed 's/[0-9]/$((RANDOM % 10))/g' > "$output"
             ;;
         4) # Interesting values

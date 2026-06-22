@@ -142,7 +142,6 @@ timeline_reconstruction() {
         grep "SUCCESS" "$output_dir/sources/authentication.txt" 2>/dev/null | grep "$user" | while read -r success_line; do
             local success_time=$(echo "$success_line" | cut -d'|' -f1)
             echo "BRUTE_FORCE|$timestamp|$user|Failed login followed by success at $success_time" >> "$output_dir/correlation/patterns.txt"
-            ((correlations++))
         done
     done
     echo -e "    ${GREEN}  ✓ Brute force patterns detected${NC}"
@@ -156,7 +155,6 @@ timeline_reconstruction() {
         # Check for subsequent suspicious activity
         grep "$src_ip" "$output_dir/sources/"*.txt 2>/dev/null | grep -v "network" | while read -r related; do
             echo "SCAN_EXPLOIT|$timestamp|$src_ip|Network scan followed by exploitation" >> "$output_dir/correlation/patterns.txt"
-            ((correlations++))
         done
     done
     echo -e "    ${GREEN}  ✓ Scan-exploit patterns detected${NC}"
@@ -171,7 +169,6 @@ timeline_reconstruction() {
         grep "file_modification" "$output_dir/sources/filesystem.txt" 2>/dev/null | while read -r file_line; do
             local file_time=$(echo "$file_line" | cut -d'|' -f1)
             echo "POST_AUTH_CHANGE|$timestamp|$user|File modification after authentication" >> "$output_dir/correlation/patterns.txt"
-            ((correlations++))
         done
     done
     echo -e "    ${GREEN}  ✓ Post-auth changes detected${NC}"

@@ -1,4 +1,5 @@
 #!/bin/bash
+# Strict mode: catch undefined variables (added 2026-06-23)set -u
 # ============================================================================
 # PILGRIMS v17.0 - ULTIMATE SECURITY FRAMEWORK
 # ============================================================================
