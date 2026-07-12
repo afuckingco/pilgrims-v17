@@ -1,80 +1,56 @@
-# Contributing to PILGRIMS
-
-Thanks for your interest in contributing to PILGRIMS v17.0 — Ultimate Security
-Framework! This document explains how to get involved.
-
-## Ground Rules
-
-1. **Authorization first** — Any new scanning/testing capability must include
-   clear notes on the legal/ethical context. Tools for attacking systems are
-   welcome, but docs MUST emphasize authorized use only.
-
-2. **Privacy first** — No telemetry, no analytics, no phone-home. New features
-   that require network calls must be opt-in and clearly flagged.
-
-3. **Modular architecture** — New modules go in `modules/module-<name>/` with
-   the standard structure:
-   ```
-   modules/module-<name>/
-   ├── pilgrims-<name>.sh    # main module script
-   ├── plugins/              # optional: per-check scripts
-   ├── reports/              # runtime outputs (gitignored)
-   └── logs/                 # runtime logs (gitignored)
-   ```
-
-4. **Shellcheck clean** — All new/modified `.sh` files must pass
-   `shellcheck -S error` with no errors. Warnings are tolerated but should be
-   justified with `# shellcheck disable=SC...` comments.
-
-5. **Bash 4+ compatibility** — Use bash features available in Ubuntu 20.04+
-   and WSL2 default. Avoid bash 5+ only features unless behind a version check.
-
-## Development Workflow
-
-```bash
-# Fork & clone
-git clone https://github.com/<your-username>/pilgrims-v17.git
-cd pilgrims-v17
-
-# Create feature branch
-git checkout -b feat/<module-name>
-
-# Install shellcheck (Ubuntu/Debian)
-sudo apt install shellcheck
-
-# Validate your changes
-shellcheck -S error modules/module-<name>/pilgrims-<name>.sh
-bash -n modules/module-<name>/pilgrims-<name>.sh
-
-# Smoke test the framework
-./pilgrims.sh --help
-./pilgrims.sh --modules
+```console
+┌──(test㉿afuckingco)-[~]
+└─$ cat CONTRIBUTING.md
 ```
 
-## Pull Request Process
+# Contributing Guidelines
 
-1. Open an issue first describing the module/feature you want to add
-2. Fork the repo and create a feature branch (`feat/...`, `fix/...`)
-3. Run shellcheck + bash -n on your changes
-4. Update relevant docs in `MODULES.md`, `FEATURES.md`, or `USER_GUIDE.md`
-5. Submit a PR referencing the original issue
-6. Wait for review (1-2 weeks typical)
-
-## Reporting Security Issues
-
-If you discover a security issue in PILGRIMS itself (not in a target system):
-
-- Email: afiqandico13@gmail.com (subject prefix: `[PILGRIMS-SEC]`)
-- Do NOT open a public issue
-- Allow up to 90 days for coordinated disclosure
-
-## Code of Conduct
-
-- Be respectful and constructive
-- Focus on the work, not the person
-- Credit others' work (PRs, blog posts, prior art)
-- Remember: security tools are dual-use. Default to defensive framing in docs.
+> Thank you for considering contributing! This guide applies across all repositories under this account, including monorepos that bundle multiple subprojects in different languages.
 
 ---
 
-*PILGRIMS v17.0 — by Afiq Andico Pangimpian, Bali, Indonesia*
+## Before you start
+
+- Check existing issues to avoid duplicate work.
+- For major changes, open an issue first to discuss what you would like to change.
+- If this repo is a consolidated monorepo (multiple subdirectories, each a separate project), scope your PR to a single subproject unless the change is repo-wide.
+
+## How to contribute
+
+1. Fork the repository.
+2. Create a feature branch from `main`.
+3. Set up your local environment according to the subproject own README.
+4. Make your changes, following the code style for that project language.
+5. Write or update tests for your changes.
+6. Ensure all checks pass locally.
+7. Write clear, descriptive commit messages (Conventional Commits).
+8. Push your branch and open a Pull Request targeting `main`.
+
+## Code style (per language)
+
+| Language | Format | Lint | Test |
+|---|---|---|---|
+| Python | black --check . | flake8 . | pytest -v |
+| Go | gofmt -l . | go vet ./... | go test ./... |
+| Rust | cargo fmt --check | cargo clippy | cargo test |
+| JavaScript / TypeScript | npx prettier --check . | npx eslint . | npm test |
+
+## Commit messages
+
+Follow Conventional Commits: feat, fix, docs, chore, refactor, test.
+
+## Pull Request checklist
+
+- [ ] Code passes formatter/linter for its language
+- [ ] Tests pass locally
+- [ ] New/changed behavior has test coverage
+- [ ] Documentation updated
+- [ ] Commit messages follow Conventional Commits
+- [ ] PR scoped to one subproject (if monorepo), unless repo-wide
+
+## Reporting bugs / security issues
+
+- Regular bugs: open a GitHub issue.
+- Security vulnerabilities: do NOT open a public issue. See SECURITY.md.
+
+We appreciate your effort.
