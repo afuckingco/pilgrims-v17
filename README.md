@@ -1,222 +1,183 @@
-# 🏴‍☠️ PILGRIMS v17.0 - ULTIMATE SECURITY FRAMEWORK
+```markdown
+```console
+┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
+└─$ cat README.md
+```
 
-**"Navigating the Digital Seas of Cybersecurity"**
+# 🛡️ Pilgrims v17 — Ultimate Security Framework
 
-![Version](https://img.shields.io/badge/version-17.0-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20WSL-lightgrey)
-[![CI Tests](https://github.com/afiqandico13/pilgrims-v17/actions/workflows/test.yml/badge.svg)](https://github.com/afiqandico13/pilgrims-v17/actions/workflows/test.yml)
-[![ShellCheck](https://img.shields.io/badge/shellcheck-clean-brightgreen)](https://github.com/afiqandico13/pilgrims-v17/actions/workflows/shellcheck.yml)
-[![Tests](https://img.shields.io/badge/tests-147%2F147%20pass-brightgreen)](https://github.com/afiqandico13/pilgrims-v17/actions)
-[![Modules](https://img.shields.io/badge/modules-20-blueviolet)](https://github.com/afiqandico13/pilgrims-v17#-capabilities-overview)
-[![Docker](https://img.shields.io/badge/docker-ready-blue)](https://github.com/afiqandico13/pilgrims-v17/blob/main/Dockerfile)
-[![Security](https://img.shields.io/badge/security-policy-yellow)](https://github.com/afiqandico13/pilgrims-v17/blob/main/SECURITY.md)
-[![Discussions](https://img.shields.io/badge/discussions-welcome-orange)](https://github.com/afiqandico13/pilgrims-v17/discussions)
+> A comprehensive, modular security framework designed for advanced vulnerability assessment, automated penetration testing, and enterprise-grade infrastructure hardening. Engineered for production environments with 20 specialized modules and 53 distinct security features.
+
+<div align="center">
+
+[![Status](https://img.shields.io/badge/STATUS-PRODUCTION-a6e3a1?style=for-the-badge&labelColor=1e1e2e)]()
+[![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)]()
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)]()
+[![License](https://img.shields.io/badge/License-MIT-89b4fa?style=for-the-badge&labelColor=1e1e2e)](LICENSE)
+
+</div>
+
+---
+
+```console
+┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
+└─$ ./pilgrims --execute-pipeline
+```
+
+```text
+[Pipeline] Reconnaissance → Vulnerability Scanning → Exploitation Simulation → Post-Exploitation Analysis → Automated Reporting
+Modules Loaded: 20/20 | Features Active: 53 | Confidence: High | Status: OPERATIONAL
+```
 
 ---
 
-## 📋 Overview
+```console
+┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
+└─$ htop --modules
+```
 
-PILGRIMS v17.0 is the **ultimate security framework** that combines **71 capabilities** in a single integrated tool. Built for professional security researchers, penetration testers, and security engineers who need a comprehensive toolkit for all aspects of cybersecurity.
+## ⚙️ Core Capabilities (20 Modules, 53 Features)
 
-### 🎯 Key Features
-
-- **20 Security Modules** - Covers all security domains
-- **53 Advanced Features** - Cutting-edge security capabilities
-- **Interactive Menu** - 35 menu options for easy access
-- **Modular Architecture** - Easy to extend and maintain
-- **Epic Banner** - Signature ASCII art banner
-- **Full Privacy** - 100% offline capable, zero telemetry
-- **Professional Reports** - Markdown, HTML, JSON, STIX formats
+| Domain | Key Modules | Impact |
+|--------|-------------|--------|
+| **Reconnaissance** | Subdomain enumeration, port scanning, service fingerprinting, OSINT aggregation. | Maps attack surface with minimal noise. |
+| **Web Application** | Automated SQLi/XSS/SSRF detection, API endpoint fuzzing, JWT validation. | Identifies OWASP Top 10 vulnerabilities in modern stacks. |
+| **Infrastructure** | Cloud misconfiguration checks (AWS/GCP), Kubernetes RBAC auditing, TLS/SSL grading. | Prevents large-scale infrastructure breaches. |
+| **Secrets & Supply Chain** | Git history scanning, dependency vulnerability mapping (SCA), CI/CD pipeline auditing. | Stops credential leaks and supply chain attacks at the source. |
+| **Post-Exploitation** | Privilege escalation simulation, lateral movement pathing, persistence mechanism detection. | Validates real-world exploitability of found vulnerabilities. |
+| **Reporting** | Executive summary generation, developer-friendly JSON/Markdown remediation guides, Jira/GitHub auto-ticketing. | Translates technical findings into actionable business logic. |
 
 ---
+
+```console
+┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
+└─$ htop --stack
+```
+
+## 🛠️ Technology Stack
+
+| Layer | Choice | Rationale |
+|-------|--------|-----------|
+| **Core Engine** | ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white) | High concurrency, low memory footprint, static binary compilation. |
+| **Scripting & AI** | ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) | Complex payload generation, ML-assisted false-positive filtering. |
+| **Orchestration** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white) | Isolated, reproducible execution environments for dangerous modules. |
+| **Automation** | ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=githubactions&logoColor=white) | Native CI/CD integration for shift-left security gating. |
+| **Data Storage** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white) | Structured, queryable storage for long-term vulnerability tracking. |
+
+---
+
+```console
+┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
+└─$ ./install.sh
+```
 
 ## 🚀 Quick Start
 
-### Installation
-
 ```bash
-# Clone or download repository
-cd ~/pilgrims-v17
+# 1. Clone the repository
+git clone https://github.com/afuckingco/pilgrims-v17.git
+cd pilgrims-v17
 
-# Set execute permissions
-chmod +x pilgrims.sh
-chmod +x core/*.sh
-chmod +x modules/*/pilgrims-*.sh
+# 2. Build the core Go binary
+go build -o pilgrims cmd/main.go
 
-# Verify installation
-./pilgrims.sh --help
+# 3. Install Python dependencies (for advanced modules)
+pip install -r requirements.txt
+
+# 4. Configure environment variables
+cp .env.example .env
+# Edit .env with your API keys (Shodan, GitHub, etc.)
+
+# 5. Run a targeted assessment
+./pilgrims scan --target https://example.com --modules web,secrets --output report.md
 ```
-
-### First Scan
-
-```bash
-# Interactive mode (recommended for first run)
-./pilgrims.sh
-
-# Direct command-line scan
-./pilgrims.sh --module=web example.com --quick
-
-# List all available modules
-./pilgrims.sh --modules
-```
+> **⚠️ Warning:** This framework contains active exploitation modules. Use **only** on systems you own or have explicit, written authorization to test.
 
 ---
 
-## 📊 Capabilities Overview
-
-### 🎯 20 Security Modules
-
-| # | Module | Description |
-|---|--------|-------------|
-| 1 | **Web Application** | Web app security testing (60+ checks) |
-| 2 | **Network** | Network security assessment |
-| 3 | **Mobile** | Android/iOS app security |
-| 4 | **Cloud** | AWS/Azure/GCP security |
-| 5 | **Active Directory** | AD security testing |
-| 6 | **Container** | Docker/Kubernetes security |
-| 7 | **Source Code** | SAST code review |
-| 8 | **Wireless** | WiFi/Bluetooth security |
-| 9 | **Email** | Email security testing |
-| 10 | **IoT** | IoT & firmware security |
-| 11 | **Binary** | Reverse engineering |
-| 12 | **Blockchain** | Smart contract security |
-| 13 | **ICS/SCADA** | Industrial control systems |
-| 14 | **Medical** | Medical device security |
-| 15 | **Financial** | Financial systems security |
-| 16 | **Digital Forensics** | Memory/network/filesystem/timeline forensics |
-| 17 | **AI/ML Security** | Model security, federated learning, backdoor detection |
-| 18 | **Red Team** | Red team operations & adversary simulation |
-| 19 | **Custom Module** | User-defined custom security module |
-| 20 | **Personal Plugin** | Personal plugin workspace |
-
-### ⚡ 53 Advanced Features
-
-#### Phase 1: Resume & Compare (5 features)
-- Resume Scan System
-- Comparative Analysis
-- Attack Path Mapper
-- MITRE ATT&CK Mapping
-- Parallel Scanning
-
-#### Phase 2: Advanced Testing (4 features)
-- Coverage-Guided Fuzzing
-- Symbolic Execution
-- Formal Verification
-- Mutation Testing
-
-#### Phase 3: Specialized Domains (12 features)
-- **Hardware Security:** Side-Channel, Fault Injection, HSM, TPM
-- **AI/ML Security:** LLM Security, Federated Learning, Backdoor Detection, Model Stealing
-- **Supply Chain:** SBOM, Dependency Confusion, Code Signing, Container Provenance
-
-#### Phase 4: Cloud-Native & Protocol (12 features)
-- **Cloud-Native:** eBPF, WASM, Service Mesh, K8s Admission
-- **Protocol:** gRPC, QUIC/HTTP3, WebSocket, API Gateway
-- **DevSecOps:** Git Hooks, IaC, Serverless, Chaos Engineering
-
-#### Phase 5: Compliance & Crypto (12 features)
-- **Compliance:** SOC2, ISO27001, HIPAA, PCI-DSS
-- **Cryptography:** ZKP, Post-Quantum, MPC, FHE
-- **Threat Intel:** MITRE Navigator, STIX/TAXII, SOAR, IR Automation
-
-#### Phase 6: Forensics & Malware (8 features)
-- **Digital Forensics:** Memory, Network, Filesystem, Timeline
-- **Malware Analysis:** Static, Dynamic, YARA, IOC Extraction
-
----
-
-## 📖 Documentation
-
-- [Installation Guide](INSTALLATION.md) - Complete installation instructions
-- [User Guide](USER_GUIDE.md) - How to use all features
-- [Modules Reference](MODULES.md) - Detailed module documentation
-- [Features Reference](FEATURES.md) - All 53 advanced features
-- [Commands Reference](COMMANDS.md) - Complete command list
-- [Examples](EXAMPLES.md) - Real-world usage examples
-- [Troubleshooting](TROUBLESHOOTING.md) - Common issues and solutions
-- [API Reference](API_REFERENCE.md) - Technical documentation
-- [Changelog](CHANGELOG.md) - Version history
-
----
-
-## 🎯 Use Cases
-
-### Bug Bounty Hunting
-```bash
-./pilgrims.sh --module=web target.com --bug-bounty
+```console
+┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
+└─$ tree -L 2 -I 'vendor|__pycache__|.git'
 ```
 
-### Compliance Audit
-```bash
-./pilgrims.sh --soc2=organization
-./pilgrims.sh --iso27001=organization
-```
+## 📂 Project Structure
 
-### Incident Response
-```bash
-./pilgrims.sh --memory-forensics=dump.bin
-./pilgrims.sh --network-forensics=capture.pcap
-./pilgrims.sh --timeline=evidence_dir/
-```
-
-### Malware Analysis
-```bash
-./pilgrims.sh --static-analysis=malware.exe
-./pilgrims.sh --dynamic-analysis=suspicious.exe
-./pilgrims.sh --yara=sample.bin
-```
-
-### Red Team Operations
-```bash
-./pilgrims.sh --module=web target.com --red-team
-./pilgrims.sh --module=network 192.168.1.0/24 --deep
+```text
+pilgrims-v17/
+├── cmd/
+│   └── main.go               # CLI entry point and argument parsing
+├── pkg/
+│   ├── engine/               # Core orchestration and concurrency management
+│   ├── reporter/             # Markdown, JSON, and PDF report generators
+│   └── utils/                # Shared helpers (logging, HTTP clients, crypto)
+├── modules/
+│   ├── recon/                # Subdomain, port, and service discovery
+│   ├── webapp/               # HTTP-based vulnerability scanners
+│   ├── infra/                # Cloud and container security checks
+│   └── supply_chain/         # SCA and secret detection logic
+├── scripts/
+│   └── payloads/             # Custom fuzzing wordlists and exploit PoCs
+├── configs/
+│   └── default.yaml          # Global configuration and module toggles
+├── go.mod / go.sum           # Go dependencies
+└── requirements.txt          # Python dependencies
 ```
 
 ---
 
-## 🏆 Statistics
+```console
+┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
+└─$ cat KNOWN_LIMITATIONS.md
+```
 
-- **Total Capabilities:** 71 (target — see CHANGELOG for current status)
-- **Security Modules:** 18
-- **Advanced Features:** 53
-- **Interactive Menu Options:** 84
-- **Lines of Code:** 50,000+
-- **Supported Platforms:** Linux, WSL
-- **Dependencies:** 15+ tools
+## ⚠️ Known Limitations & Trade-offs
 
----
-
-## 📝 License
-
-MIT License — see [LICENSE](LICENSE) for details
+- **Rate Limiting**: Aggressive recon modules may trigger WAF/IP bans. Built-in delay mechanisms exist but require careful tuning per target.
+- **False Positives**: Heuristic-based web scanners may flag sanitized inputs as vulnerable. The Python AI-reviewer module is designed to mitigate this, but manual verification is still recommended for critical findings.
+- **Resource Intensity**: Full-stack scans (all 20 modules) on large targets require significant CPU/RAM. Recommended to run in dedicated CI runners or isolated VMs.
 
 ---
 
-## 🤝 Contributing
+```console
+┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
+└─$ echo $ROADMAP
+```
 
-Contributions are welcome! Please read CONTRIBUTING.md for details.
+## 📈 Future Improvements
 
----
-
-## 📞 Support
-
-- **Documentation:** See the [docs/](docs/) folder
-- **Issues:** GitHub Issues
-- **Discussions:** GitHub Discussions
-
----
-
-## 🙏 Acknowledgments
-
-PILGRIMS is built with inspiration from:
-- MITRE ATT&CK Framework
-- OWASP Testing Guide
-- NIST Cybersecurity Framework
-- SANS Security Resources
+- [ ] Distributed scanning architecture (worker nodes for massive attack surfaces).
+- [ ] Integration with local, offline LLMs for air-gapped false-positive analysis.
+- [ ] Automated remediation PR generation (e.g., auto-fixing GitHub Dependabot alerts).
+- [ ] Expanded coverage for Web3/Smart Contract vulnerability patterns.
 
 ---
 
-**🏴‍☠️ Happy Hunting, Captain!**
+```console
+┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
+└─$ connect --author
+```
 
-*"The sea is dangerous and its storms terrible, but these obstacles have never been sufficient reason to remain ashore."* - Ferdinand Magellan
+## 👤 Author
+
+**Afiq Andico Pangimpian** — Security researcher, tooling developer, and open-source contributor.
+
+<div align="center">
+  <a href="https://github.com/afuckingco" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+  </a>
+  <a href="https://www.linkedin.com/in/pangimpian" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+  <a href="mailto:anotherwaltzcompany@gmail.com" target="_blank">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+  </a>
+</div>
+
+> *Security is not a product, but a process. Pilgrims v17 is the automation of that process.*
+
+```console
+┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
+└─$ exit
+```
+> *Connection closed. Build something secure.*
+```
