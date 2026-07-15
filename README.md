@@ -159,7 +159,7 @@ pilgrims-v17/
 
 ## 👤 Author
 
-**Afiq Andico Pangimpian** — Security researcher, tooling developer, and open-source contributor.
+**afuckingco** — Security researcher, tooling developer, and open-source contributor.
 
 <div align="center">
   <a href="https://github.com/afuckingco" target="_blank">
