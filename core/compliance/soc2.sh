@@ -1,4 +1,6 @@
 #!/bin/bash
+# SIMULATION STUB — educational scaffold only; NOT a live security scanner.
+# Generates sample output files. Do NOT use for real assessments.
 # ============================================================================
 # SOC2 COMPLIANCE CHECKER - Trust Service Criteria
 # ============================================================================

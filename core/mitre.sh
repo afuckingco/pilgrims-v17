@@ -1,4 +1,6 @@
 #!/bin/bash
+# SIMULATION STUB — educational scaffold only; NOT a live security scanner.
+# Generates sample output files. Do NOT use for real assessments.
 # ============================================================================
 # MITRE ATT&CK MAPPING - Map Findings to ATT&CK Framework
 # ============================================================================

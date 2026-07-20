@@ -1,183 +1,162 @@
-```markdown
-```console
-┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
-└─$ cat README.md
-```
+# 🛡️ Pilgrims — Advanced Bash Orchestration Framework
 
-# 🛡️ Pilgrims v17 — Ultimate Security Framework
+> A modular Bash command center that orchestrates industry-standard security CLI tools
+> (nmap, curl, whois, dig, jq, openssl, sqlite3, assetfinder, whatweb, wafw00f, and more)
+> into a unified, structured reconnaissance and vulnerability-scanning pipeline.
 
-> A comprehensive, modular security framework designed for advanced vulnerability assessment, automated penetration testing, and enterprise-grade infrastructure hardening. Engineered for production environments with 20 specialized modules and 53 distinct security features.
-
-<div align="center">
-
-[![Status](https://img.shields.io/badge/STATUS-PRODUCTION-a6e3a1?style=for-the-badge&labelColor=1e1e2e)]()
-[![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)]()
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)]()
-[![License](https://img.shields.io/badge/License-MIT-89b4fa?style=for-the-badge&labelColor=1e1e2e)](LICENSE)
-
-</div>
+**Pilgrims is 100% Bash.** It does not rewrite scanners — it wires mature tools together
+with consistent output, reporting, and a shared core library. No Go, no Python, no database
+server required (SQLite via the `sqlite3` CLI).
 
 ---
 
-```console
-┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
-└─$ ./pilgrims --execute-pipeline
-```
+## ⚙️ What It Actually Is
 
-```text
-[Pipeline] Reconnaissance → Vulnerability Scanning → Exploitation Simulation → Post-Exploitation Analysis → Automated Reporting
-Modules Loaded: 20/20 | Features Active: 53 | Confidence: High | Status: OPERATIONAL
-```
-
----
-
-```console
-┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
-└─$ htop --modules
-```
-
-## ⚙️ Core Capabilities (20 Modules, 53 Features)
-
-| Domain | Key Modules | Impact |
-|--------|-------------|--------|
-| **Reconnaissance** | Subdomain enumeration, port scanning, service fingerprinting, OSINT aggregation. | Maps attack surface with minimal noise. |
-| **Web Application** | Automated SQLi/XSS/SSRF detection, API endpoint fuzzing, JWT validation. | Identifies OWASP Top 10 vulnerabilities in modern stacks. |
-| **Infrastructure** | Cloud misconfiguration checks (AWS/GCP), Kubernetes RBAC auditing, TLS/SSL grading. | Prevents large-scale infrastructure breaches. |
-| **Secrets & Supply Chain** | Git history scanning, dependency vulnerability mapping (SCA), CI/CD pipeline auditing. | Stops credential leaks and supply chain attacks at the source. |
-| **Post-Exploitation** | Privilege escalation simulation, lateral movement pathing, persistence mechanism detection. | Validates real-world exploitability of found vulnerabilities. |
-| **Reporting** | Executive summary generation, developer-friendly JSON/Markdown remediation guides, Jira/GitHub auto-ticketing. | Translates technical findings into actionable business logic. |
+| Layer | Technology | Notes |
+|-------|-----------|-------|
+| **Language** | Bash 4+ | 100% shell. ~28k LOC across 119 scripts. |
+| **Orchestration** | Bash sourcing + CLI tooling | `core/` = shared lib, `modules/` = per-domain scanners. |
+| **Reporting** | Markdown + SQLite | `core/reporting.sh` + `core/database.sh`. |
+| **Packaging** | Docker + AUR/Homebrew stubs | `Dockerfile`, `packaging/`. |
+| **CI** | GitHub Actions | ShellCheck + `bash -n` + feature tests. |
 
 ---
 
-```console
-┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
-└─$ htop --stack
-```
+## 📦 Modules
 
-## 🛠️ Technology Stack
+### Implemented (orchestrate real tools)
+| Module | Tools Used | What It Does |
+|--------|-----------|--------------|
+| `web` | curl, dig, whois, openssl, jq, python3 | Subdomain enum, wayback OSINT, headers, SQLi/XSS/SSRF/CORS, path discovery. |
+| `web-basic` | curl, dig | Lighter web recon. |
+| `network` | nmap, sudo | Host discovery, port scan, service enum, vuln scripts. |
+| `cloud` | aws/gcp/azure CLIs (optional) | Cloud misconfig checks. |
+| `code` | semgrep/gitleaks (optional) | SAST / secret scanning. |
+| `container` | trivy (optional) | Image/container scanning. |
+| `email` | dig, curl | SPF/DKIM/DMARC, breach checks. |
+| `iot` | nmap, curl | Embedded device recon. |
+| `my-plugin` | template | User scaffold for custom modules. |
+| `custom-module` | template + plugins | Custom checks (header_check plugin included). |
 
-| Layer | Choice | Rationale |
-|-------|--------|-----------|
-| **Core Engine** | ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white) | High concurrency, low memory footprint, static binary compilation. |
-| **Scripting & AI** | ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) | Complex payload generation, ML-assisted false-positive filtering. |
-| **Orchestration** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white) | Isolated, reproducible execution environments for dangerous modules. |
-| **Automation** | ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=githubactions&logoColor=white) | Native CI/CD integration for shift-left security gating. |
-| **Data Storage** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white) | Structured, queryable storage for long-term vulnerability tracking. |
+### Simulated / Educational (print banners + write sample reports — **no live exploitation**)
+These exist as scaffolding to demonstrate the framework's structure and are clearly marked
+`SIMULATION STUB` at the top of each file:
+`ad`, `ai`, `binary`, `blockchain`, `financial`, `forensic`, `ics`, `medical`, `mobile`,
+`redteam`, `wireless`, plus `core/{aiml,cloudnative,compliance,crypto,devsecops,forensics,hardware,malware,protocol,supplychain,threatintel}`, `core/{formal,symbolic,mutation}` etc.
+
+> Use the simulated modules for learning the framework's shape, not for real assessments.
 
 ---
-
-```console
-┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
-└─$ ./install.sh
-```
 
 ## 🚀 Quick Start
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/afuckingco/pilgrims-v17.git
-cd pilgrims-v17
+# 1. Clone
+git clone https://github.com/afuckingco/pilgrims.git
+cd pilgrims
 
-# 2. Build the core Go binary
-go build -o pilgrims cmd/main.go
+# 2. Install dependencies (Debian/Ubuntu/Kali/WSL2)
+sudo apt update && sudo apt install -y \
+  nmap curl whois dnsutils jq openssl python3 sqlite3 \
+  qrencode netcat-openbsd bc file binutils xxd uuid-runtime
 
-# 3. Install Python dependencies (for advanced modules)
-pip install -r requirements.txt
+# Optional scanners (used by some modules if present):
+sudo apt install -y assetfinder ffuf whatweb wafw00f trivy
 
-# 4. Configure environment variables
-cp .env.example .env
-# Edit .env with your API keys (Shodan, GitHub, etc.)
+# 3. Make scripts executable
+chmod +x pilgrims.sh core/*.sh modules/*/pilgrims-*.sh
 
-# 5. Run a targeted assessment
-./pilgrims scan --target https://example.com --modules web,secrets --output report.md
+# 4. Run it
+./pilgrims.sh --help
+./pilgrims.sh --module=web https://example.com
+./pilgrims.sh --interactive
 ```
-> **⚠️ Warning:** This framework contains active exploitation modules. Use **only** on systems you own or have explicit, written authorization to test.
+
+> **⚠️ Warning:** Use only on systems you own or have explicit, written authorization to test.
 
 ---
 
-```console
-┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
-└─$ tree -L 2 -I 'vendor|__pycache__|.git'
+## 🏗️ Architecture
+
+```
+pilgrims.sh              # entry point — sources core/ + dispatches module
+core/
+  strict.sh              # set -euo pipefail + fail-fast traps (sourced first)
+  ui.sh utils.sh logging.sh database.sh reporting.sh
+  stealth_profiles.sh scan_templates.sh themes.sh crypto.sh
+  recorder.sh profiler.sh qr_generator.sh
+  <domain>.sh            # simulated/educational modules (marked SIMULATION STUB)
+modules/<name>/pilgrims-<name>.sh   # each is self-contained + has a source guard
+tests/unit/              # bashunit-style tests (source guards, modules, main)
+shared/core/             # historical mirror of core/ — do not edit directly
 ```
 
-## 📂 Project Structure
-
-```text
-pilgrims-v17/
-├── cmd/
-│   └── main.go               # CLI entry point and argument parsing
-├── pkg/
-│   ├── engine/               # Core orchestration and concurrency management
-│   ├── reporter/             # Markdown, JSON, and PDF report generators
-│   └── utils/                # Shared helpers (logging, HTTP clients, crypto)
-├── modules/
-│   ├── recon/                # Subdomain, port, and service discovery
-│   ├── webapp/               # HTTP-based vulnerability scanners
-│   ├── infra/                # Cloud and container security checks
-│   └── supply_chain/         # SCA and secret detection logic
-├── scripts/
-│   └── payloads/             # Custom fuzzing wordlists and exploit PoCs
-├── configs/
-│   └── default.yaml          # Global configuration and module toggles
-├── go.mod / go.sum           # Go dependencies
-└── requirements.txt          # Python dependencies
+**Module contract:**
+```bash
+MODULE_NAME="web"
+MODULE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$MODULE_DIR/../.." && pwd)"
+source "$SCRIPT_DIR/core/ui.sh"
+source "$SCRIPT_DIR/core/utils.sh"
+# Guard: never execute when sourced
+[[ "${BASH_SOURCE[0]}" = "$0" ]] || { echo "Do not source this module" >&2; return 0 2>/dev/null || exit 0; }
+TARGET="$1"; shift
 ```
 
 ---
 
-```console
-┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
-└─$ cat KNOWN_LIMITATIONS.md
+## 🧪 Testing
+
+```bash
+./test-simple.sh          # fast smoke test
+./test-all-features.sh    # full feature test
+./full-test.sh            # exhaustive
+tests/unit/run_all.sh     # unit suite (source guards, modules, main dispatch)
 ```
 
-## ⚠️ Known Limitations & Trade-offs
-
-- **Rate Limiting**: Aggressive recon modules may trigger WAF/IP bans. Built-in delay mechanisms exist but require careful tuning per target.
-- **False Positives**: Heuristic-based web scanners may flag sanitized inputs as vulnerable. The Python AI-reviewer module is designed to mitigate this, but manual verification is still recommended for critical findings.
-- **Resource Intensity**: Full-stack scans (all 20 modules) on large targets require significant CPU/RAM. Recommended to run in dedicated CI runners or isolated VMs.
+CI runs ShellCheck (with project `.shellcheckrc`) + `bash -n` on every push/PR.
 
 ---
 
-```console
-┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
-└─$ echo $ROADMAP
-```
+## 📂 Documentation
 
-## 📈 Future Improvements
-
-- [ ] Distributed scanning architecture (worker nodes for massive attack surfaces).
-- [ ] Integration with local, offline LLMs for air-gapped false-positive analysis.
-- [ ] Automated remediation PR generation (e.g., auto-fixing GitHub Dependabot alerts).
-- [ ] Expanded coverage for Web3/Smart Contract vulnerability patterns.
+- `INSTALLATION.md` — full install steps (manual, Docker, WSL2)
+- `MODULES.md` — module reference
+- `COMMANDS.md` — CLI flags
+- `USER_GUIDE.md` / `EXAMPLES.md` — usage walkthroughs
+- `API_REFERENCE.md` — core function reference
+- `SECURITY.md` — vulnerability reporting policy
+- `DISCLAIMER.md` — legal / authorized-use notice
 
 ---
 
-```console
-┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
-└─$ connect --author
-```
+## 🛡️ Security Notes
+
+- `core/strict.sh` enables `set -euo pipefail` with an error trap on all entry scripts.
+- Report encryption (`core/crypto.sh`) uses `openssl aes-256-cbc -pbkdf2 -iter 100000`
+  and reads the passphrase from stdin (not the process table).
+- No API keys are required; all tooling is local CLI.
+- Logs go to `shared/logs/`; scan history to `shared/db/pilgrims.db` (SQLite).
+
+---
+
+## 📈 Status & Roadmap
+
+**Status:** Active — core orchestration + web/network modules are production-useful.
+Simulated modules are scaffolding and should be expanded or removed per your needs.
+
+Roadmap:
+- [ ] Promote selected simulated modules to real implementations.
+- [ ] Add a module manifest (replace filesystem glob discovery).
+- [ ] Cross-module data passing (e.g. subdomains → network scan).
+
+---
 
 ## 👤 Author
 
-**Afiq Andico Pangimpian** — Security researcher, tooling developer, and open-source contributor.
+**Afiq Andico Pangimpian** — Security researcher, tooling developer.
+GitHub: [@afuckingco](https://github.com/afuckingco)
 
-<div align="center">
-  <a href="https://github.com/afuckingco" target="_blank">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
-  </a>
-  <a href="https://www.linkedin.com/in/pangimpian" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
-  </a>
-  <a href="mailto:anotherwaltzcompany@gmail.com" target="_blank">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
-  </a>
-</div>
+> *Security is not a product, but a process. Pilgrims is the automation of that process.*
 
-> *Security is not a product, but a process. Pilgrims v17 is the automation of that process.*
-
-```console
-┌──(test㉿afuckingco)-[~/projects/pilgrims-v17]
-└─$ exit
-```
-> *Connection closed. Build something secure.*
-```
+MIT License.

@@ -1,4 +1,6 @@
 #!/bin/bash
+# SIMULATION STUB — educational scaffold only; NOT a live security scanner.
+# Generates sample output files. Do NOT use for real assessments.
 MODULE_NAME="forensic"
 MODULE_VERSION="1.0"
 MODULE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

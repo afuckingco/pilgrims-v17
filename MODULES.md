@@ -2,9 +2,18 @@
 
 ## Overview
 
-PILGRIMS v17.0 includes **18 security modules** covering all major security domains. Each module is designed to provide comprehensive security assessment for its specific domain.
+PILGRIMS v17.0 includes **18 security modules** covering all major security domains. Each module is a standalone Bash script (`modules/module-<name>/pilgrims-<name>.sh`).
+
+> **⚠ Implementation Status:** Some modules are **simulation stubs** (marked with `[STUB]`). They generate sample output for educational purposes and do NOT perform live security testing. Do NOT use stub modules for real assessments.
 
 ---
+
+## Module Status Legend
+
+| Marker | Meaning |
+|--------|---------|
+| *(no marker)* | **Real implementation** — performs live scanning using Bash + CLI tools |
+| `[STUB]` | **Simulation stub** — generates sample output only; not a live scanner |
 
 ## Module List
 
@@ -56,7 +65,7 @@ sudo ./pilgrims.sh --module=network 192.168.1.0/24 --deep
 
 ### 3. Mobile App Security
 **Module:** `module-mobile`  
-**Command:** `./pilgrims.sh --module=mobile <file>`
+**Command:** `./pilgrims.sh --module=mobile <file>` `[STUB]`
 
 **Description:** Mobile application security testing for Android and iOS platforms.
 
@@ -101,7 +110,7 @@ sudo ./pilgrims.sh --module=network 192.168.1.0/24 --deep
 
 ### 5. Active Directory Security
 **Module:** `module-ad`  
-**Command:** `./pilgrims.sh --module=ad <dc-ip>`
+**Command:** `./pilgrims.sh --module=ad <dc-ip>` `[STUB]`
 
 **Description:** Active Directory security assessment including enumeration, policy analysis, and vulnerability detection.
 
@@ -165,7 +174,7 @@ sudo ./pilgrims.sh --module=network 192.168.1.0/24 --deep
 
 ### 8. Wireless Security
 **Module:** `module-wireless`  
-**Command:** `sudo ./pilgrims.sh --module=wireless <interface>`
+**Command:** `sudo ./pilgrims.sh --module=wireless <interface>` `[STUB]`
 
 **Description:** Wireless network security assessment.
 
@@ -226,7 +235,7 @@ sudo ./pilgrims.sh --module=wireless wlan0 --crack
 
 ### 11. Binary Analysis & Reverse Engineering
 **Module:** `module-binary`  
-**Command:** `./pilgrims.sh --module=binary <file>`
+**Command:** `./pilgrims.sh --module=binary <file>` `[STUB]`
 
 **Description:** Binary file analysis and reverse engineering.
 
@@ -247,7 +256,7 @@ sudo ./pilgrims.sh --module=wireless wlan0 --crack
 
 ### 12. Blockchain & Web3 Security
 **Module:** `module-blockchain`  
-**Command:** `./pilgrims.sh --module=blockchain <target>`
+**Command:** `./pilgrims.sh --module=blockchain <target>` `[STUB]`
 
 **Description:** Blockchain and Web3 security assessment.
 
@@ -268,7 +277,7 @@ sudo ./pilgrims.sh --module=wireless wlan0 --crack
 
 ### 13. ICS/SCADA Security
 **Module:** `module-ics`  
-**Command:** `./pilgrims.sh --module=ics <target>`
+**Command:** `./pilgrims.sh --module=ics <target>` `[STUB]`
 
 **Description:** Industrial Control Systems security assessment.
 
@@ -287,7 +296,7 @@ sudo ./pilgrims.sh --module=wireless wlan0 --crack
 
 ### 14. Medical Device Security
 **Module:** `module-medical`  
-**Command:** `./pilgrims.sh --module=medical <target>`
+**Command:** `./pilgrims.sh --module=medical <target>` `[STUB]`
 
 **Description:** Medical device security assessment.
 
@@ -306,7 +315,7 @@ sudo ./pilgrims.sh --module=wireless wlan0 --crack
 
 ### 15. Financial Systems Security
 **Module:** `module-financial`  
-**Command:** `./pilgrims.sh --module=financial <target>`
+**Command:** `./pilgrims.sh --module=financial <target>` `[STUB]`
 
 **Description:** Financial systems security assessment.
 
@@ -323,60 +332,64 @@ sudo ./pilgrims.sh --module=wireless wlan0 --crack
 
 ---
 
-### 16. Automotive Security
-**Module:** `module-automotive`  
-**Command:** `./pilgrims.sh --module=automotive <target>`
+### 16. Medical Device Security
+**Module:** `module-medical`  
+**Command:** `./pilgrims.sh --module=medical <target>` `[STUB]`
 
-**Description:** Automotive systems security assessment.
+**Description:** Medical device / HIPAA security review (simulation stub — sample output only).
 
 **Features:**
-- CAN bus analysis
-- OBD-II security
-- Telemetry analysis
-- Key fob security
+- HIPAA compliance checks
+- Device inventory
+- Data encryption review
+- Access control audit
 
 **Usage:**
 ```bash
-./pilgrims.sh --module=automotive can0
+./pilgrims.sh --module=medical device
 ```
 
 ---
 
-### 17. 5G/Telecom Security
-**Module:** `module-5g`  
-**Command:** `./pilgrims.sh --module=5g <target>`
+### 17. Financial Systems Security
+**Module:** `module-financial`  
+**Command:** `./pilgrims.sh --module=financial <target>` `[STUB]`
 
-**Description:** 5G and telecommunications security assessment.
+**Description:** Financial / PCI-DSS security review (simulation stub — sample output only).
 
 **Features:**
-- 5G protocol testing
-- SIM card security
-- IMSI catcher detection
-- RF analysis
+- PCI-DSS compliance checks
+- Transaction security
+- Fraud detection
+- Encryption standards
 
 **Usage:**
 ```bash
-./pilgrims.sh --module=5g gnb
+./pilgrims.sh --module=financial system
 ```
 
 ---
 
-### 18. Gaming Security
-**Module:** `module-gaming`  
-**Command:** `./pilgrims.sh --module=gaming <target>`
+### 18. AI/ML Security
+**Module:** `module-ai`  
+**Command:** `./pilgrims.sh --module=ai <target>` `[STUB]`
 
-**Description:** Gaming and esports security assessment.
+**Description:** AI/ML model security review (simulation stub — sample output only).
 
 **Features:**
-- Game client security
-- Anti-cheat analysis
-- Virtual economy audit
-- Memory protection
+- Model poisoning detection
+- Adversarial robustness
+- Data privacy review
+- Prompt injection checks
 
 **Usage:**
 ```bash
-./pilgrims.sh --module=gaming game.exe
+./pilgrims.sh --module=ai model
 ```
+
+---
+
+> **Note:** Modules `automotive`, `5g`, and `gaming` described in older docs do NOT exist in this release. The 18 modules above are the current set.
 
 ---
 

@@ -1,4 +1,6 @@
-# 📖 User Guide
+# 📘 User Guide
+
+> **⚠ Implementation Note:** This guide documents the framework as designed. Some features (advanced forensics, compliance automation, advanced crypto) are **not yet implemented** in the Bash codebase — see MODULES.md for real-vs-stub status. The tool is **Bash + SQLite + standard CLI tools only**; no Go, Python, or Postgres components.
 
 ## Table of Contents
 
@@ -683,7 +685,7 @@ git pull
 sudo apt update && sudo apt upgrade -y
 
 # Test after update
-./test-simple.sh
+./test-simple.sh 2>/dev/null || echo "Note: test-simple.sh is an optional test script (may not exist in all distributions)"
 ```
 
 ### 7. Use Stealth When Needed
@@ -705,7 +707,7 @@ sudo apt update && sudo apt upgrade -y
 export PILGRIMS_LOG_LEVEL=DEBUG
 
 # Review logs
-tail -f shared/logs/pilgrims.log
+tail -f logs/pilgrims.log
 ```
 
 ---
