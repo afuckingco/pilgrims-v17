@@ -154,7 +154,7 @@ Roadmap:
 
 ## 👤 Author
 
-**Afiq Andico Pangimpian** — Security researcher, tooling developer.
+**afuckingco** — Security researcher, tooling developer.
 GitHub: [@afuckingco](https://github.com/afuckingco)
 
 > *Security is not a product, but a process. Pilgrims is the automation of that process.*
