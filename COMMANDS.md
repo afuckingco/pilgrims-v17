@@ -1,5 +1,7 @@
 # 📋 Commands Reference
 
+> **⚠ Implementation Note:** Some modules are **simulation stubs** (marked `[STUB]` in MODULES.md) — they generate sample output only, not live scans. The "Advanced Feature Commands" section documents the **full vision** for the framework; many flags (e.g. `--fuzz`, `--symbolic`, `--zkp`, `--soar`) are **not yet implemented** in the current Bash codebase and will be ignored or error if invoked. Only modules marked "Real" in MODULES.md perform actual security testing.
+
 ## Table of Contents
 
 1. [Basic Commands](#basic-commands)

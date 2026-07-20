@@ -7,13 +7,20 @@
 MODULE_NAME="email"
 MODULE_VERSION="1.0"
 MODULE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$MODULE_DIR/../.." && pwd)"
 
-source "$SCRIPT_DIR/../../core/ui.sh"
-source "$SCRIPT_DIR/../../core/utils.sh"
+source "$SCRIPT_DIR/core/ui.sh"
+source "$SCRIPT_DIR/core/utils.sh"
 [[ "${BASH_SOURCE[0]}" = "$0" ]] || { echo "Do not source this module - run it as a script" >&2; return 0 2>/dev/null || exit 0; }
 
-TARGET="$1"
-shift
+TARGET="${1:-}"
+shift 2>/dev/null || true
+
+if [ -z "$TARGET" ]; then
+    print_error "Target domain not specified" >&2
+    echo "Usage: $0 <domain> [args]" >&2
+    exit 1
+fi
 
 OUTPUT_DIR="$MODULE_DIR/reports/email_$(get_timestamp)"
 mkdir -p "$OUTPUT_DIR"

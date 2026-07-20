@@ -1,5 +1,6 @@
 #!/bin/bash
-# Strict mode: catch undefined variables (added 2026-06-23)set -u
+# Strict mode guard (errexit + nounset + pipefail)
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/core/strict.sh"
 # Auto-installer untuk module yang missing
 
 echo "🔧 PILGRIMS MODULE INSTALLER"

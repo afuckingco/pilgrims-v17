@@ -1,4 +1,6 @@
 #!/bin/bash
+# SIMULATION STUB — educational scaffold only; NOT a live security scanner.
+# Generates sample output files. Do NOT use for real assessments.
 
 # Source UI helpers (for print_*) if not already sourced
 if ! command -v print_success &>/dev/null; then

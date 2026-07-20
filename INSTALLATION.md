@@ -27,7 +27,7 @@
 # Update system
 sudo apt update && sudo apt upgrade -y
 
-# Install core dependencies
+# Install core dependencies (Bash + SQLite + standard CLI tools only)
 sudo apt install -y \
     nmap \
     curl \
@@ -35,31 +35,16 @@ sudo apt install -y \
     dnsutils \
     jq \
     openssl \
-    python3 \
-    python3-pip \
     sqlite3 \
     qrencode \
-    netcat \
+    netcat-openbsd \
     bc \
     file \
     binutils \
     strings \
     xxd \
-    uuid-runtime
-
-# Install security tools
-sudo apt install -y \
-    assetfinder \
-    ffuf \
-    whatweb \
-    wafw00f \
-    dirb \
-    apktool \
-    hashcat \
-    john \
-    trivy \
-    yara \
-    binwalk
+    uuid-runtime \
+    dig
 ```
 
 #### Step 2: Download PILGRIMS
@@ -95,24 +80,17 @@ find . -type f -name "*.sh" -exec chmod 755 {} \;
 
 ```bash
 # Check structure
-tree -L 2
+ls -la
 
-# Expected output:
+# Expected layout (version 17.0):
 # .
-# ├── pilgrims.sh
-# ├── pilgrims-manage.sh
-# ├── core/
-# │   ├── ui.sh
-# │   ├── database.sh
-# │   ├── utils.sh
-# │   └── ... (other core files)
-# ├── modules/
-# │   ├── module-web/
-# │   ├── module-network/
-# │   └── ... (other modules)
-# └── shared/
-#     ├── db/
-#     └── logs/
+# ├── pilgrims.sh              # main entry point (Bash)
+# ├── pilgrims-manage.sh       # module manager
+# ├── core/                    # Bash library: ui.sh database.sh utils.sh logging.sh
+# │                           #   stealth_profiles.sh scan_templates.sh themes.sh
+# │                           #   crypto.sh recorder.sh profiler.sh qr_generator.sh resume.sh
+# ├── modules/                 # Each module: module-<name>/pilgrims-<name>.sh
+# └── tests/  docs/  packaging/
 
 # Test installation
 ./pilgrims.sh --help
@@ -167,7 +145,7 @@ wsl --install -d Ubuntu-22.04
 sudo apt update && sudo apt upgrade -y
 
 # Install dependencies
-sudo apt install -y nmap curl whois dnsutils jq openssl python3 sqlite3
+sudo apt install -y nmap curl whois dnsutils jq openssl sqlite3
 
 # Install PILGRIMS
 mkdir -p ~/pilgrims-v17
@@ -182,18 +160,20 @@ cd ~/pilgrims-v17
 ### 1. Configure Database
 
 ```bash
-# Initialize database
+# Initialize database (auto-created on first run)
 ./pilgrims.sh --history
 
-# Verify database
+# Verify database (auto-created at shared/db/pilgrims.db)
 sqlite3 shared/db/pilgrims.db ".tables"
 ```
+
+**Note:** The `shared/` directory is created automatically by the first run. No manual setup required.
 
 ### 2. Configure Logging
 
 ```bash
-# Create log directory
-mkdir -p shared/logs
+# Create log directory (optional; auto-created at logs/)
+mkdir -p logs
 
 # Set log level (optional)
 export PILGRIMS_LOG_LEVEL=INFO
@@ -316,7 +296,7 @@ chmod +x modules/*/pilgrims-*.sh
 rm -rf ~/pilgrims-v17
 
 # Remove dependencies (optional)
-sudo apt remove -y nmap curl whois dnsutils jq openssl python3 sqlite3
+sudo apt remove -y nmap curl whois dnsutils jq openssl sqlite3
 ```
 
 ---
